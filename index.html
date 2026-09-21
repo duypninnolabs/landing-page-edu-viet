@@ -1,0 +1,35 @@
+<section class="section no-border wrapper-home-newsletter lazyload">
+	<div class="container">
+		<div class="content-newsletter">
+			<h2>{{settings.title_newsletter}}</h2>
+			<p>{{settings.text_newsletter}}</p>
+			<div class="form-newsletter"> 
+				{%- capture formContactFooter -%}
+				{% form 'customer' %}
+				<div class="form-group">
+					<input type="hidden" id="newsletter_tags" name="contact[tags]" value="khách hàng tiềm năng, bản tin" />     
+					<input required type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" value="" placeholder="Nhập email của bạn" name="contact[email]"  aria-label="Email Address" class="inputNew form-control grey newsletter-input">
+					<button type="submit" class="button submitNewsletter"><span>Gửi</span></button>
+				</div>
+				<div class="sitebox-recaptcha hidden">
+					This site is protected by reCAPTCHA and the Google
+					<a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">Privacy Policy</a> 
+					and <a href="https://policies.google.com/terms" target="_blank" rel="noreferrer">Terms of Service</a> apply.
+				</div>	
+				{% if form.posted_successfully? %}
+				<p class="success feedback accent-text">Cám ơn bạn đã đăng ký email theo dõi!</p>
+				{% endif %}
+				{% if form.errors %}
+				<div class="error-box">
+					{% for field in form.errors %}
+					{{ field }} {{ form.errors.messages[field] }}
+					{% endfor %} 
+				</div>
+				{% endif %}
+				{% endform%}
+				{%- endcapture -%}
+				{{ formContactFooter | replace:'script','noscript'}}
+			</div>
+		</div>
+	</div>
+</section>
