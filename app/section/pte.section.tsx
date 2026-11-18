@@ -150,16 +150,16 @@ export default function PteBanner() {
           {/* ================= RIGHT IMAGE ================= */}
           <div className="relative min-h-[420px] sm:min-h-[480px] lg:min-h-[560px]">
             <div className="absolute inset-0 overflow-hidden rounded-[26px]">
-              
-           
-          
+
+
+
 
               {/* 
                 TABLET + DESKTOP
                 >= 640px
               */}
               <img
-                src="/banner1.png"
+                src="/1.png"
                 alt="Lớp học EDU Việt"
                 className="
                   absolute

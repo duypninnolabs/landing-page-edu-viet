@@ -54,7 +54,7 @@ export default function LearningOutcomeSection() {
           <div className="relative pb-10 lg:pb-12">
             <div className="relative overflow-hidden rounded-[28px] bg-[#F8F9FC]">
               <img
-                src="/banner2.png"
+                src="/2.png"
                 alt="Học viên EDU Việt"
                 className="
                   h-[400px]
@@ -266,7 +266,7 @@ export default function LearningOutcomeSection() {
                 <HiOutlineArrowRight className="text-[18px]" />
               </button>
 
-           
+
             </div>
           </div>
         </div>

@@ -1,380 +1,78 @@
 "use client";
 
 import React, { useRef, useState } from "react";
+import {
+  HiUserGroup,
+  HiMap,
+  HiAcademicCap,
+  HiChartBar,
+  HiClipboardDocumentCheck,
+  HiFlag,
+  HiChevronLeft,
+  HiChevronRight,
+} from "react-icons/hi2";
 
 /* =========================================================
    BRAND COLORS
-
    Primary:   #142249
    Secondary: #F26922
 ========================================================= */
 
 /* =========================================================
-   DATA
+   DATA VỚI REACT ICONS SOLID CAO CẤP
 ========================================================= */
 
 const items = [
   {
+    number: "01",
     title: "Lớp ít học sinh",
-    desc: "Giáo viên có nhiều thời gian theo sát và hỗ trợ từng bé.",
-    icon: "class",
+    desc: "Sĩ số giới hạn giúp giáo viên có nhiều thời gian theo sát, sửa lỗi phát âm và hỗ trợ từng bé.",
+    icon: HiUserGroup,
   },
   {
+    number: "02",
     title: "Lộ trình phù hợp",
-    desc: "Xây dựng theo độ tuổi, năng lực đầu vào và mục tiêu từng giai đoạn.",
-    icon: "route",
+    desc: "Xây dựng theo độ tuổi, năng lực tiếp thu đầu vào và mục tiêu chứng chỉ của từng giai đoạn.",
+    icon: HiMap,
   },
   {
-    title: "GV Việt Nam + GV nước ngoài",
-    desc: "Kết hợp nền tảng kiến thức vững chắc và môi trường giao tiếp tự nhiên.",
-    icon: "teacher",
+    number: "03",
+    title: "GV Việt Nam + GV Nước Ngoài",
+    desc: "Kết hợp nền tảng kiến thức vững chắc và môi trường giao tiếp phản xạ tự nhiên chuẩn bản xứ.",
+    icon: HiAcademicCap,
   },
   {
+    number: "04",
     title: "Theo dõi tiến độ",
-    desc: "Phụ huynh nắm rõ quá trình học và sự tiến bộ của con.",
-    icon: "progress",
+    desc: "Báo cáo học tập minh bạch gửi về liên tục giúp phụ huynh nắm rõ quá trình học và sự tiến bộ của con.",
+    icon: HiChartBar,
   },
   {
+    number: "05",
     title: "Đánh giá theo chuẩn",
-    desc: "Định hướng đánh giá năng lực theo Cambridge và CEFR.",
-    icon: "assessment",
+    desc: "Định hướng kiểm tra và đánh giá năng lực theo chuẩn khảo thí quốc tế Cambridge và CEFR.",
+    icon: HiClipboardDocumentCheck,
   },
   {
+    number: "06",
     title: "Định hướng đầu ra",
-    desc: "Mục tiêu học tập được xác định rõ ràng theo từng giai đoạn.",
-    icon: "target",
+    desc: "Mục tiêu học tập và cam kết kết quả được xác định rõ ràng, đo lường minh bạch theo từng giai đoạn.",
+    icon: HiFlag,
   },
 ];
-/* =========================================================
-   ICONS
-========================================================= */
-
-const ClassIcon = () => (
-  <svg
-    viewBox="0 0 80 80"
-    fill="none"
-    className="h-[64px] w-[64px] md:h-[72px] md:w-[72px]"
-  >
-    <circle cx="40" cy="40" r="31" fill="#FDE8DD" />
-
-    <circle
-      cx="40"
-      cy="28"
-      r="9"
-      fill="white"
-      stroke="#142249"
-      strokeWidth="2.5"
-    />
-
-    <path
-      d="M25 60v-6c0-9 7-16 15-16s15 7 15 16v6"
-      fill="white"
-      stroke="#142249"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-    />
-
-    <circle
-      cx="20"
-      cy="35"
-      r="6"
-      fill="white"
-      stroke="#142249"
-      strokeWidth="2.5"
-    />
-
-    <circle
-      cx="60"
-      cy="35"
-      r="6"
-      fill="white"
-      stroke="#142249"
-      strokeWidth="2.5"
-    />
-
-    <path
-      d="M10 57v-4c0-7 4-12 10-12M70 57v-4c0-7-4-12-10-12"
-      stroke="#F26922"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-    />
-  </svg>
-);
-
-const RouteIcon = () => (
-  <svg
-    viewBox="0 0 80 80"
-    fill="none"
-    className="h-[64px] w-[64px] md:h-[72px] md:w-[72px]"
-  >
-    <circle cx="40" cy="40" r="31" fill="#FDE8DD" />
-
-    <circle
-      cx="21"
-      cy="55"
-      r="6"
-      fill="white"
-      stroke="#142249"
-      strokeWidth="2.5"
-    />
-
-    <circle
-      cx="59"
-      cy="23"
-      r="6"
-      fill="white"
-      stroke="#142249"
-      strokeWidth="2.5"
-    />
-
-    <path
-      d="M26 52c8-3 7-11 15-14 7-3 11-1 15-10"
-      stroke="#142249"
-      strokeWidth="3"
-      strokeLinecap="round"
-      strokeDasharray="5 5"
-    />
-
-    <path
-      d="m54 18 5 5-5 5"
-      stroke="#F26922"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
-
-const TeacherIcon = () => (
-  <svg
-    viewBox="0 0 80 80"
-    fill="none"
-    className="h-[64px] w-[64px] md:h-[72px] md:w-[72px]"
-  >
-    <circle cx="40" cy="40" r="31" fill="#FDE8DD" />
-
-    <rect
-      x="31"
-      y="17"
-      width="37"
-      height="27"
-      rx="3"
-      fill="white"
-      stroke="#142249"
-      strokeWidth="2.5"
-    />
-
-    <path
-      d="M39 25h21M39 32h14"
-      stroke="#F26922"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-    />
-
-    <circle
-      cx="23"
-      cy="32"
-      r="8"
-      fill="white"
-      stroke="#142249"
-      strokeWidth="2.5"
-    />
-
-    <path
-      d="M10 61v-8c0-8 6-14 13-14s13 6 13 14v8"
-      fill="white"
-      stroke="#142249"
-      strokeWidth="2.5"
-    />
-
-    <path
-      d="M35 46l11-8"
-      stroke="#F26922"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-    />
-  </svg>
-);
-
-const ProgressIcon = () => (
-  <svg
-    viewBox="0 0 80 80"
-    fill="none"
-    className="h-[64px] w-[64px] md:h-[72px] md:w-[72px]"
-  >
-    <circle cx="40" cy="40" r="31" fill="#FDE8DD" />
-
-    <rect
-      x="18"
-      y="15"
-      width="44"
-      height="50"
-      rx="4"
-      fill="white"
-      stroke="#142249"
-      strokeWidth="2.5"
-    />
-
-    <path
-      d="M27 53V42M40 53V33M53 53V24"
-      stroke="#F26922"
-      strokeWidth="5"
-      strokeLinecap="round"
-    />
-
-    <path
-      d="M26 25h12"
-      stroke="#142249"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-    />
-  </svg>
-);
-
-const AssessmentIcon = () => (
-  <svg
-    viewBox="0 0 80 80"
-    fill="none"
-    className="h-[64px] w-[64px] md:h-[72px] md:w-[72px]"
-  >
-    <circle cx="40" cy="40" r="31" fill="#FDE8DD" />
-
-    <rect
-      x="22"
-      y="17"
-      width="36"
-      height="48"
-      rx="3"
-      fill="white"
-      stroke="#142249"
-      strokeWidth="2.5"
-    />
-
-    <path
-      d="M31 17v-4h18v4"
-      stroke="#142249"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-    />
-
-    <path
-      d="m29 34 4 4 7-8M29 49l4 4 7-8"
-      stroke="#F26922"
-      strokeWidth="2.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-
-    <path
-      d="M44 34h8M44 49h8"
-      stroke="#142249"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-    />
-  </svg>
-);
-
-const TargetIcon = () => (
-  <svg
-    viewBox="0 0 80 80"
-    fill="none"
-    className="h-[64px] w-[64px] md:h-[72px] md:w-[72px]"
-  >
-    <circle cx="40" cy="40" r="31" fill="#FDE8DD" />
-
-    <circle
-      cx="38"
-      cy="42"
-      r="20"
-      fill="white"
-      stroke="#142249"
-      strokeWidth="2.5"
-    />
-
-    <circle
-      cx="38"
-      cy="42"
-      r="11"
-      stroke="#F26922"
-      strokeWidth="2.5"
-    />
-
-    <circle cx="38" cy="42" r="4" fill="#F26922" />
-
-    <path
-      d="M41 39 62 18"
-      stroke="#142249"
-      strokeWidth="3"
-      strokeLinecap="round"
-    />
-
-    <path
-      d="M55 18h7v7"
-      stroke="#F26922"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
-
-const PrevIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
-    <path
-      d="m15 6-6 6 6 6"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
-
-const NextIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
-    <path
-      d="m9 6 6 6-6 6"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
-
-const Icon = ({ type }: { type: string }) => {
-  switch (type) {
-    case "class":
-      return <ClassIcon />;
-    case "route":
-      return <RouteIcon />;
-    case "teacher":
-      return <TeacherIcon />;
-    case "progress":
-      return <ProgressIcon />;
-    case "assessment":
-      return <AssessmentIcon />;
-    case "target":
-      return <TargetIcon />;
-    default:
-      return <ClassIcon />;
-  }
-};
 
 /* =========================================================
-   CARD
+   CARD COMPONENT
 ========================================================= */
 
 type CardProps = {
-  item: {
-    title: string;
-    desc: string;
-    icon: string;
-  };
+  item: (typeof items)[0];
   mobile?: boolean;
 };
 
 const Card = ({ item, mobile = false }: CardProps) => {
+  const IconComponent = item.icon;
+
   return (
     <article
       className={`
@@ -388,71 +86,86 @@ const Card = ({ item, mobile = false }: CardProps) => {
         text-center
         transition-all
         duration-300
+        hover:bg-[#FFF9F5]
 
-        hover:bg-[#FFF8F4]
-
-        ${
-          mobile
-            ? `
-              min-h-[280px]
+        ${mobile
+          ? `
+              min-h-[290px]
               w-full
               shrink-0
               snap-center
-
-              rounded-[20px]
+              rounded-[22px]
               border
               border-[#142249]/10
-
               px-6
               py-7
-
               shadow-[0_8px_30px_rgba(20,34,73,0.06)]
             `
-            : `
-              min-h-[275px]
+          : `
+              min-h-[285px]
               px-8
-              py-8
+              py-9
             `
         }
       `}
     >
-      {/* ICON */}
+      {/* KHUNG ICON 3D SOFT GLOW ĐA TẦNG - CỰC ĐẸP & NỔI BẬT */}
+      <div className="relative mb-5 flex items-center justify-center">
+        {/* Lớp hào quang mờ phía sau */}
+        <div className="absolute h-14 w-14 rounded-2xl bg-[#F26922]/15 blur-lg transition-all duration-300 group-hover:scale-125 group-hover:bg-[#F26922]/30" />
 
-      <div
-        className={`
-          flex
-          items-center
-          justify-center
-          transition-transform
-          duration-300
+        {/* Khung Icon chính viền nổi gradient */}
+        <div
+          className={`
+            relative
+            flex
+            items-center
+            justify-center
+            rounded-[20px]
+            border border-[#F26922]/20
+            bg-gradient-to-br from-[#FFF5F0] to-[#FFE7DC]
+            text-[#F26922]
+            shadow-[0_8px_20px_rgba(242,105,34,0.12)]
+            transition-all
+            duration-300
 
-          group-hover:-translate-y-1
+            group-hover:scale-110
+            group-hover:rotate-3
+            group-hover:bg-gradient-to-br
+            group-hover:from-[#F26922]
+            group-hover:to-[#D9530D]
+            group-hover:text-white
+            group-hover:shadow-[0_12px_28px_rgba(242,105,34,0.35)]
 
-          ${mobile ? "mb-5 h-[70px]" : "mb-5 h-[78px]"}
-        `}
-      >
-        <Icon type={item.icon} />
+            ${mobile ? "h-[62px] w-[62px]" : "h-[70px] w-[70px]"}
+          `}
+        >
+          <IconComponent
+            className={`transition-transform duration-300 ${mobile ? "h-7 w-7" : "h-8 w-8"
+              }`}
+          />
+        </div>
       </div>
 
-      {/* TITLE */}
-
+      {/* TIÊU ĐỀ */}
       <h3
         className={`
           max-w-[320px]
           font-bold
           capitalize
-
           text-[#142249]
+          transition-colors
+          duration-300
+          group-hover:text-[#F26922]
 
-          ${
-            mobile
-              ? `
+          ${mobile
+            ? `
                 text-[18px]
                 leading-[1.35]
                 tracking-[-0.2px]
               `
-              : `
-                text-[17px]
+            : `
+                text-[18px]
                 leading-[1.4]
               `
           }
@@ -461,8 +174,7 @@ const Card = ({ item, mobile = false }: CardProps) => {
         {item.title}
       </h3>
 
-      {/* DESCRIPTION */}
-
+      {/* MÔ TẢ */}
       <p
         className={`
           mx-auto
@@ -470,10 +182,9 @@ const Card = ({ item, mobile = false }: CardProps) => {
           max-w-[330px]
           text-[#5B6278]
 
-          ${
-            mobile
-              ? "text-[13px] leading-[1.6]"
-              : "text-[15px] leading-[1.65]"
+          ${mobile
+            ? "text-[13px] leading-[1.6]"
+            : "text-[14px] leading-[1.65]"
           }
         `}
       >
@@ -484,30 +195,22 @@ const Card = ({ item, mobile = false }: CardProps) => {
 };
 
 /* =========================================================
-   SECTION
+   SECTION CHÍNH
 ========================================================= */
 
 export default function WhySection() {
   const sliderRef = useRef<HTMLDivElement | null>(null);
-
   const [currentIndex, setCurrentIndex] = useState(0);
 
   /* =======================================================
      GO TO SLIDE
   ======================================================= */
-
   const goToSlide = (index: number) => {
     const slider = sliderRef.current;
-
     if (!slider) return;
 
-    const newIndex = Math.max(
-      0,
-      Math.min(index, items.length - 1)
-    );
-
+    const newIndex = Math.max(0, Math.min(index, items.length - 1));
     const cards = slider.children;
-
     const target = cards[newIndex] as HTMLElement;
 
     if (!target) return;
@@ -523,7 +226,6 @@ export default function WhySection() {
   /* =======================================================
      PREV / NEXT
   ======================================================= */
-
   const handlePrev = () => {
     goToSlide(currentIndex - 1);
   };
@@ -535,24 +237,16 @@ export default function WhySection() {
   /* =======================================================
      DETECT CURRENT SLIDE
   ======================================================= */
-
   const handleScroll = () => {
     const slider = sliderRef.current;
-
     if (!slider) return;
 
-    const cards = Array.from(
-      slider.children
-    ) as HTMLElement[];
-
+    const cards = Array.from(slider.children) as HTMLElement[];
     let closestIndex = 0;
     let closestDistance = Infinity;
 
     cards.forEach((card, index) => {
-      const distance = Math.abs(
-        slider.scrollLeft - card.offsetLeft
-      );
-
+      const distance = Math.abs(slider.scrollLeft - card.offsetLeft);
       if (distance < closestDistance) {
         closestDistance = distance;
         closestIndex = index;
@@ -573,29 +267,24 @@ export default function WhySection() {
     >
       <div
         className="
-          mx-auto
           container
-
-       
-
+          mx-auto
+          py-8
           md:px-4
-           py-8
-        md:py-16
+          md:py-16
         "
       >
         {/* =================================================
-            SECTION TITLE
+            TIÊU ĐỀ SECTION
         ================================================= */}
-
         <div
           className="
             mx-auto
-            mb-5
+            mb-6
             max-w-[760px]
             px-5
             text-center
-
-            md:mb-8
+            md:mb-10
             md:px-0
           "
         >
@@ -608,7 +297,6 @@ export default function WhySection() {
               uppercase
               tracking-[0.14em]
               text-[#F26922]
-
               md:text-[13px]
             "
           >
@@ -622,17 +310,13 @@ export default function WhySection() {
               leading-[1.25]
               tracking-[-0.6px]
               text-[#142249]
-
               sm:text-[30px]
-
               md:text-[34px]
               md:leading-[1.3]
-
-              
             "
           >
-            6 Điểm Khác Biệt Trong Mỗi Lớp Học 
-            <span className="text-[#F26922] inline sm:block">
+            6 Điểm Khác Biệt Trong Mỗi Lớp Học
+            <span className="inline text-[#F26922] sm:block">
               {" "}
               Tại EDU Việt
             </span>
@@ -640,9 +324,8 @@ export default function WhySection() {
         </div>
 
         {/* =================================================
-            MOBILE < 768PX
+            MOBILE SLIDER (< 768PX)
         ================================================= */}
-
         <div className="md:hidden">
           <div className="px-4">
             <div
@@ -656,34 +339,19 @@ export default function WhySection() {
                 gap-4
                 overflow-x-auto
                 scroll-smooth
-
                 [scrollbar-width:none]
                 [-ms-overflow-style:none]
-
                 [&::-webkit-scrollbar]:hidden
               "
             >
               {items.map((item, index) => (
-                <Card
-                  key={index}
-                  item={item}
-                  mobile
-                />
+                <Card key={index} item={item} mobile />
               ))}
             </div>
           </div>
 
           {/* MOBILE CONTROLS */}
-
-          <div
-            className="
-              mt-5
-              flex
-              items-center
-              justify-center
-              gap-3
-            "
-          >
+          <div className="mt-5 flex items-center justify-center gap-3">
             <button
               type="button"
               onClick={handlePrev}
@@ -695,43 +363,27 @@ export default function WhySection() {
                 w-9
                 items-center
                 justify-center
-
                 rounded-full
                 border
                 border-[#142249]
-
                 text-[#142249]
-
                 transition-all
                 duration-200
-
                 hover:border-[#F26922]
                 hover:bg-[#F26922]
                 hover:text-white
-
                 disabled:cursor-not-allowed
                 disabled:opacity-30
-
                 disabled:hover:border-[#142249]
                 disabled:hover:bg-transparent
                 disabled:hover:text-[#142249]
               "
             >
-              <PrevIcon />
+              <HiChevronLeft className="h-5 w-5" />
             </button>
 
-            <span
-              className="
-                min-w-[52px]
-                text-center
-                text-[13px]
-                font-bold
-                text-[#142249]
-              "
-            >
-              <span className="text-[#F26922]">
-                {currentIndex + 1}
-              </span>
+            <span className="min-w-[52px] text-center text-[13px] font-bold text-[#142249]">
+              <span className="text-[#F26922]">{currentIndex + 1}</span>
               {" / "}
               {items.length}
             </span>
@@ -747,56 +399,44 @@ export default function WhySection() {
                 w-9
                 items-center
                 justify-center
-
                 rounded-full
                 border
                 border-[#142249]
-
                 text-[#142249]
-
                 transition-all
                 duration-200
-
                 hover:border-[#F26922]
                 hover:bg-[#F26922]
                 hover:text-white
-
                 disabled:cursor-not-allowed
                 disabled:opacity-30
-
                 disabled:hover:border-[#142249]
                 disabled:hover:bg-transparent
                 disabled:hover:text-[#142249]
               "
             >
-              <NextIcon />
+              <HiChevronRight className="h-5 w-5" />
             </button>
           </div>
         </div>
 
         {/* =================================================
-            TABLET + DESKTOP
+            TABLET + DESKTOP (GRID CÓ VIỀN NGĂN CÁCH ĐẸP MẮT)
         ================================================= */}
-
         <div
           className="
             hidden
             overflow-hidden
             rounded-[24px]
-
             md:grid
             md:grid-cols-2
             md:gap-[1px]
-            md:bg-[#DDE1EA]
-
+            md:bg-[#EAEFF7]
             lg:grid-cols-3
           "
         >
           {items.map((item, index) => (
-            <Card
-              key={index}
-              item={item}
-            />
+            <Card key={index} item={item} />
           ))}
         </div>
       </div>

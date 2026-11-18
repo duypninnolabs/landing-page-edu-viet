@@ -17,7 +17,7 @@ const programs = [
     title: "Tiếng Anh Mầm Non",
     desc: "Làm quen ngôn ngữ qua hoạt động, hình thành phản xạ nghe – nói.",
     tag: "3 - 5 TUỔI",
-    img: "/mam-non.png",
+    img: "/mamnon.png",
   },
   {
     title: "Tiếng Anh Tiểu Học",
@@ -243,8 +243,8 @@ export default function CourseSection() {
           >
             Chương trình học
           </span>
-<h2
-  className="
+          <h2
+            className="
     text-[26px]
     font-bold
     leading-[1.25]
@@ -255,12 +255,12 @@ export default function CourseSection() {
     
     capitalize
   "
->
-  Chương trình học phù hợp {" "}
-  <span className=" text-[#F26922]">
-    Với từng độ tuổi và năng lực
-  </span>
-</h2>
+          >
+            Chương trình học phù hợp {" "}
+            <span className=" text-[#F26922]">
+              Với từng độ tuổi và năng lực
+            </span>
+          </h2>
           <p
             className="
               mx-auto
@@ -281,8 +281,8 @@ export default function CourseSection() {
             SLIDER AREA
         ================================================= */}
 
-     <div
-  className="
+        <div
+          className="
     relative
     w-full
     min-w-0
@@ -291,14 +291,14 @@ export default function CourseSection() {
     sm:[--image-height:300px]
     lg:[--image-height:320px]
   "
->
-  {/* PREV BUTTON */}
+        >
+          {/* PREV BUTTON */}
 
-  <button
-    ref={prevRef}
-    type="button"
-    aria-label="Chương trình trước"
-    className="
+          <button
+            ref={prevRef}
+            type="button"
+            aria-label="Chương trình trước"
+            className="
       absolute
       left-2
       top-[calc(var(--image-height)/2)]
@@ -329,17 +329,17 @@ export default function CourseSection() {
 
       lg:left-3
     "
-  >
-    <MdNavigateBefore className="text-[27px]" />
-  </button>
+          >
+            <MdNavigateBefore className="text-[27px]" />
+          </button>
 
-  {/* NEXT BUTTON */}
+          {/* NEXT BUTTON */}
 
-  <button
-    ref={nextRef}
-    type="button"
-    aria-label="Chương trình tiếp theo"
-    className="
+          <button
+            ref={nextRef}
+            type="button"
+            aria-label="Chương trình tiếp theo"
+            className="
       absolute
       right-2
       top-[calc(var(--image-height)/2)]
@@ -370,60 +370,60 @@ export default function CourseSection() {
 
       lg:right-3
     "
-  >
-    <MdNavigateNext className="text-[27px]" />
-  </button>
+          >
+            <MdNavigateNext className="text-[27px]" />
+          </button>
 
-  {/* SWIPER WRAPPER */}
+          {/* SWIPER WRAPPER */}
 
-  <div
-    className="
+          <div
+            className="
       w-full
       min-w-0
       overflow-hidden
     "
-  >
-    <Swiper
-      modules={[Navigation]}
-      loop={true}
-      slidesPerView={1}
-      spaceBetween={16}
-      navigation={{
-        prevEl: prevRef.current,
-        nextEl: nextRef.current,
-      }}
-      onBeforeInit={(swiper) => {
-        if (
-          typeof swiper.params.navigation !== "boolean" &&
-          swiper.params.navigation
-        ) {
-          swiper.params.navigation.prevEl = prevRef.current;
-          swiper.params.navigation.nextEl = nextRef.current;
-        }
-      }}
-      breakpoints={{
-        0: {
-          slidesPerView: 1,
-          spaceBetween: 16,
-        },
-        640: {
-          slidesPerView: 1,
-          spaceBetween: 18,
-        },
-        768: {
-          slidesPerView: 2,
-          spaceBetween: 20,
-        },
-        1024: {
-          slidesPerView: 3,
-          spaceBetween: 22,
-        },
-        1280: {
-          slidesPerView: 4,
-          spaceBetween: 24,
-        },
-      }}
-      className="
+          >
+            <Swiper
+              modules={[Navigation]}
+              loop={true}
+              slidesPerView={1}
+              spaceBetween={16}
+              navigation={{
+                prevEl: prevRef.current,
+                nextEl: nextRef.current,
+              }}
+              onBeforeInit={(swiper) => {
+                if (
+                  typeof swiper.params.navigation !== "boolean" &&
+                  swiper.params.navigation
+                ) {
+                  swiper.params.navigation.prevEl = prevRef.current;
+                  swiper.params.navigation.nextEl = nextRef.current;
+                }
+              }}
+              breakpoints={{
+                0: {
+                  slidesPerView: 1,
+                  spaceBetween: 16,
+                },
+                640: {
+                  slidesPerView: 1,
+                  spaceBetween: 18,
+                },
+                768: {
+                  slidesPerView: 2,
+                  spaceBetween: 20,
+                },
+                1024: {
+                  slidesPerView: 3,
+                  spaceBetween: 22,
+                },
+                1280: {
+                  slidesPerView: 4,
+                  spaceBetween: 24,
+                },
+              }}
+              className="
         !w-full
         !max-w-full
         !overflow-hidden
@@ -434,21 +434,21 @@ export default function CourseSection() {
         [&_.swiper-slide]:!min-w-0
         [&_.swiper-slide]:!max-w-full
       "
-    >
-      {programs.map((program, index) => (
-        <SwiperSlide
-          key={`${program.title}-${index}`}
-          className="
+            >
+              {programs.map((program, index) => (
+                <SwiperSlide
+                  key={`${program.title}-${index}`}
+                  className="
             !h-auto
             !min-w-0
           "
-        >
-          <CourseCard {...program} />
-        </SwiperSlide>
-      ))}
-    </Swiper>
-  </div>
-</div>
+                >
+                  <CourseCard {...program} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        </div>
       </div>
     </section>
   );

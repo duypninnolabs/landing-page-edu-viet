@@ -1,526 +1,100 @@
 "use client";
 
-import {
-  HiOutlinePuzzlePiece,
-  HiOutlineBookOpen,
-  HiOutlineAcademicCap,
-  HiOutlineClipboardDocumentCheck,
-  HiOutlineMap,
-  HiOutlinePresentationChartLine,
-  HiOutlineArrowPath,
-} from "react-icons/hi2";
-
-/* =========================================================
-   DATA
-========================================================= */
-
 const roadmap = [
   {
     stage: "GIAI ĐOẠN 3-5 TUỔI",
     title: "Làm Quen & Tạo Phản Xạ",
-    desc: "Làm quen tiếng Anh tự nhiên, tăng phản xạ nghe - nói và hứng thú học.",
-    icon: HiOutlinePuzzlePiece,
+    desc: "Làm quen tiếng Anh tự nhiên, tăng phản xạ nghe - nói và hứng thú học qua phương pháp trực quan.",
+    image: "../3.png",
     number: "01",
+    tag: "Mầm non",
   },
   {
     stage: "GIAI ĐOẠN TIỂU HỌC",
-    title: "Xây Nền Tảng",
-    desc: "Phát triển từ vựng, phát âm, giao tiếp và kỹ năng học tiếng Anh.",
-    icon: HiOutlineBookOpen,
+    title: "Xây Nền Tảng Vững Chắc",
+    desc: "Phát triển từ vựng, chuẩn hóa phát âm, giao tiếp tự tin và rèn luyện tư duy ngôn ngữ chủ động.",
+    image: "../4.png",
     number: "02",
+    tag: "Lớp 1 - Lớp 5",
   },
   {
     stage: "GIAI ĐOẠN THCS",
     title: "Phát Triển Toàn Diện",
-    desc: "Củng cố ngữ pháp, phát triển kỹ năng và hướng tới chuẩn đầu ra cao hơn.",
-    icon: HiOutlineAcademicCap,
+    desc: "Củng cố ngữ pháp chuyên sâu, thành thạo 4 kỹ năng và sẵn sàng chinh phục các kỳ thi chuẩn quốc tế.",
+    image: "../thcs1.png",
     number: "03",
+    tag: "Lớp 6 - Lớp 9",
   },
 ];
-
-const process = [
-  {
-    title: "Đánh giá đầu vào",
-    icon: HiOutlineClipboardDocumentCheck,
-  },
-  {
-    title: "Xếp lộ trình",
-    icon: HiOutlineMap,
-  },
-  {
-    title: "Theo dõi tiến bộ",
-    icon: HiOutlinePresentationChartLine,
-  },
-  {
-    title: "Điều chỉnh khi cần",
-    icon: HiOutlineArrowPath,
-  },
-];
-
-/* =========================================================
-   SECTION
-========================================================= */
 
 export default function RoadmapSection() {
   return (
-    <section
-      id="roadmap"
-      className="
-        w-full
-        overflow-hidden
-        bg-[#F8F9FC]
-        py-8
-        md:py-16
-      "
-    >
-      <div className="container mx-auto md:px-6">
-        {/* =================================================
-            HEADER
-        ================================================= */}
+    <section id="roadmap" className="w-full bg-[#F8F9FC] py-12 md:py-20">
+      <div className="container mx-auto px-4 md:px-6">
 
-        <div
-          className="
-            mx-auto
-            mb-10
-            max-w-[850px]
-            text-center
-            md:mb-14
-          "
-        >
-          <span
-            className="
-              mb-1
-              inline-block
-              text-[12px]
-              font-bold
-              uppercase
-              tracking-[0.15em]
-              text-[#F26922]
-              md:text-[13px]
-            "
-          >
+        {/* HEADER */}
+        <div className="mx-auto mb-10 max-w-[850px] text-center md:mb-14">
+          <span className="mb-2 inline-block text-[12px] font-bold uppercase tracking-[0.15em] text-[#F26922] md:text-[13px]">
             Lộ trình học tập
           </span>
-
-   <h2
-  className="
-    text-[26px]
-    font-bold 
-    leading-[1.25]
-    tracking-[-0.6px]
-    text-[#142249]
-capitalize
-    sm:text-[30px]
-    md:text-[34px]
-    md:leading-[1.25]
-    
-
-  "
->
-  Lộ trình tiếng Anh xuyên suốt{" "}
-  <span className="text-[#F26922] sm:block">
-    từ 3 tuổi đến lớp 9
-  </span>
-</h2>
-
-          <p
-            className="
-              mx-auto
-              mt-1
-              max-w-[650px]
-              text-[14px]
-              leading-[1.7]
-              text-[#697086]
-              md:text-[15px]
-            "
-          >
-            Mỗi giai đoạn được xây dựng theo độ tuổi, năng lực và mục tiêu
-            phát triển phù hợp của học viên.
+          <h2 className="text-[26px] font-bold leading-[1.25] tracking-[-0.6px] text-[#142249] sm:text-[30px] md:text-[36px]">
+            Lộ trình tiếng Anh xuyên suốt <span className="text-[#F26922] block sm:inline">từ 3 tuổi đến lớp 9</span>
+          </h2>
+          <p className="mx-auto mt-2 max-w-[650px] text-[14px] leading-[1.7] text-[#697086] md:text-[15px]">
+            Mỗi giai đoạn được thiết kế chuyên biệt theo tâm lý độ tuổi, năng lực tiếp thu và mục tiêu phát triển của từng học viên.
           </p>
         </div>
 
-        {/* =================================================
-            DESKTOP ROADMAP
-        ================================================= */}
+        {/* 3 CARDS GRID */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          {roadmap.map((item) => (
+            <article
+              key={item.number}
+              className="group flex flex-col overflow-hidden rounded-[24px] border border-[#142249]/[0.08] bg-white shadow-[0_8px_30px_rgba(20,34,73,0.06)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_45px_rgba(20,34,73,0.12)]"
+            >
+              {/* KHUNG ẢNH LỚN BÊN TRÊN */}
+              <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  loading="lazy"
+                />
 
-        <div className="relative hidden md:block">
-          {/* CONNECT LINE */}
+                {/* LỚP GRADIENT NHẸ ĐỂ NỔI SỐ */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20" />
 
-          <div
-            className="
-              absolute
-              left-[16.66%]
-              right-[16.66%]
-              top-[46px]
-              h-[2px]
-              bg-[#DDE2EA]
-            "
-          />
+                {/* SỐ BƯỚC / STEP BADGE */}
+                <span className="absolute top-3.5 left-3.5 flex h-9 w-9 items-center justify-center rounded-xl bg-[#142249]/90 font-bold text-white text-xs backdrop-blur-md shadow-md">
+                  {item.number}
+                </span>
 
-          <div className="relative grid grid-cols-3 gap-5 lg:gap-7">
-            {roadmap.map((item) => {
-              const Icon = item.icon;
+                {/* TAG ĐỘ TUỔI */}
+                <span className="absolute bottom-3.5 left-3.5 rounded-full bg-[#F26922] px-3 py-1 text-[11px] font-bold text-white shadow-md">
+                  {item.tag}
+                </span>
+              </div>
 
-              return (
-                <div
-                  key={item.number}
-                  className="
-                    group
-                    relative
-                    flex
-                    flex-col
-                    items-center
-                    text-center
-                  "
-                >
-                  {/* TIMELINE POINT */}
+              {/* NỘI DUNG CHI TIẾT */}
+              <div className="flex flex-1 flex-col p-6 sm:p-7">
+                <span className="text-[11px] font-bold uppercase tracking-[0.08em] text-[#F26922]">
+                  {item.stage}
+                </span>
 
-                  <div
-                    className="
-                      relative
-                      z-10
-                      mb-6
-                      flex
-                      h-[92px]
-                      w-[92px]
-                      items-center
-                      justify-center
-                      rounded-full
-                      border-[6px]
-                      border-[#F8F9FC]
-                      bg-[#142249]
-                      text-white
-                      shadow-[0_8px_25px_rgba(20,34,73,0.16)]
-                      transition-all
-                      duration-300
+                <h3 className="mt-1 text-[20px] font-bold leading-snug text-[#142249] lg:text-[22px]">
+                  {item.title}
+                </h3>
 
-                      group-hover:bg-[#F26922]
-                      group-hover:scale-105
-                    "
-                  >
-                    <Icon className="text-[34px]" />
+                <div className="my-3.5 h-[3px] w-8 rounded-full bg-[#F26922]" />
 
-                    <span
-                      className="
-                        absolute
-                        -right-2
-                        -top-2
-                        flex
-                        h-7
-                        w-7
-                        items-center
-                        justify-center
-                        rounded-full
-                        bg-[#F26922]
-                        text-[10px]
-                        font-bold
-                        text-white
-                      "
-                    >
-                      {item.number}
-                    </span>
-                  </div>
-
-                  {/* CARD */}
-
-                  <article
-                    className="
-                      flex
-                      min-h-[]
-                      w-full
-                      flex-col
-                      items-center
-                      rounded-[22px]
-                      border
-                      border-[#142249]/[0.08]
-                      bg-white
-                      px-6
-                      py-7
-                      shadow-[0_8px_30px_rgba(20,34,73,0.05)]
-                      transition-all
-                      duration-300
-
-                      group-hover:-translate-y-1
-                      group-hover:shadow-[0_14px_40px_rgba(20,34,73,0.10)]
-                    "
-                  >
-                    <span
-                      className="
-                        mb-3
-                        text-[11px]
-                        font-bold
-                        uppercase
-                        tracking-[0.08em]
-                        text-[#F26922]
-                        lg:text-[12px]
-                      "
-                    >
-                      {item.stage}
-                    </span>
-
-                    <h3
-                      className="
-                        text-[20px]
-                        font-bold
-                        leading-[1.35]
-                        text-[#142249]
-                        lg:text-[22px]
-                        capitalize
-                      "
-                    >
-                      {item.title}
-                    </h3>
-
-                    <div
-                      className="
-                        my-4
-                        h-[3px]
-                        w-8
-                        rounded-full
-                        bg-[#F26922]
-                      "
-                    />
-
-                    <p
-                      className="
-                        max-w-[330px]
-                        text-[14px]
-                        leading-[1.65]
-                        text-[#697086]
-                      "
-                    >
-                      {item.desc}
-                    </p>
-                  </article>
-                </div>
-              );
-            })}
-          </div>
+                <p className="text-[14px] leading-[1.65] text-[#697086]">
+                  {item.desc}
+                </p>
+              </div>
+            </article>
+          ))}
         </div>
 
-        {/* =================================================
-            MOBILE ROADMAP
-        ================================================= */}
-
-        <div className="relative md:hidden">
-          {/* VERTICAL LINE */}
-
-          <div
-            className="
-              absolute
-              bottom-[35px]
-              left-[25px]
-              top-[30px]
-              w-[2px]
-              bg-[#DDE2EA]
-            "
-          />
-
-          <div className="flex flex-col gap-5">
-            {roadmap.map((item) => {
-              const Icon = item.icon;
-
-              return (
-                <div
-                  key={item.number}
-                  className="
-                    relative
-                    flex
-                    items-stretch
-                    gap-4
-                  "
-                >
-                  {/* MOBILE POINT */}
-
-                  <div
-                    className="
-                      relative
-                      z-10
-                      mt-5
-                      flex
-                      h-[52px]
-                      w-[52px]
-                      shrink-0
-                      items-center
-                      justify-center
-                      rounded-full
-                      border-[5px]
-                      border-[#F8F9FC]
-                      bg-[#142249]
-                      text-white
-                    "
-                  >
-                    <Icon className="text-[21px]" />
-                  </div>
-
-                  {/* MOBILE CARD */}
-
-                  <article
-                    className="
-                      w-full
-                      rounded-[18px]
-                      border
-                      border-[#142249]/[0.08]
-                      bg-white
-                      px-5
-                      py-5
-                      shadow-[0_6px_22px_rgba(20,34,73,0.05)]
-                    "
-                  >
-                    <div className="mb-2 flex items-center justify-between gap-3">
-                      <span
-                        className="
-                          text-[10px]
-                          font-bold
-                          uppercase
-                          tracking-[0.06em]
-                          text-[#F26922]
-                        "
-                      >
-                        {item.stage}
-                      </span>
-
-                      <span
-                        className="
-                          text-[12px]
-                          font-bold
-                          text-[#142249]/30
-                        "
-                      >
-                        {item.number}
-                      </span>
-                    </div>
-
-                    <h3
-                      className="
-                        text-[19px]
-                        font-bold
-                        leading-[1.35]
-                        text-[#142249]
-                      "
-                    >
-                      {item.title}
-                    </h3>
-
-                    <p
-                      className="
-                        mt-2
-                        text-[14px]
-                        leading-[1.6]
-                        text-[#697086]
-                      "
-                    >
-                      {item.desc}
-                    </p>
-                  </article>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* =================================================
-            PROCESS
-        ================================================= */}
-
-        {/* <div
-          className="
-            mt-10
-            rounded-[22px]
-            bg-[#142249]
-            px-5
-            py-6
-
-            md:mt-14
-            md:px-8
-            md:py-7
-
-            lg:px-10
-          "
-        >
-          <div
-            className="
-              grid
-              grid-cols-2
-              gap-x-3
-              gap-y-5
-
-              md:grid-cols-4
-              md:gap-0
-            "
-          >
-            {process.map((item, index) => {
-              const Icon = item.icon;
-
-              return (
-                <div
-                  key={item.title}
-                  className="
-                    relative
-                    flex
-                    flex-col
-                    items-center
-                    justify-center
-                    px-2
-                    text-center
-
-                    md:px-5
-                  "
-                >
-
-                  {index !== process.length - 1 && (
-                    <div
-                      className="
-                        absolute
-                        right-0
-                        top-1/2
-                        hidden
-                        h-10
-                        w-[1px]
-                        -translate-y-1/2
-                        bg-white/15
-
-                        md:block
-                      "
-                    />
-                  )}
-
-                  <div
-                    className="
-                      mb-2.5
-                      flex
-                      h-10
-                      w-10
-                      items-center
-                      justify-center
-                      rounded-full
-                      bg-[#F26922]
-                      text-white
-                    "
-                  >
-                    <Icon className="text-[20px]" />
-                  </div>
-
-                  <span
-                    className="
-                      text-[11px]
-                      font-bold
-                      uppercase
-                      leading-[1.4]
-                      tracking-[0.04em]
-                      text-white
-
-                      sm:text-[12px]
-                      lg:text-[13px]
-                    "
-                  >
-                    {item.title}
-                  </span>
-                </div>
-              );
-            })}
-          </div>
-        </div> */}
       </div>
     </section>
   );
